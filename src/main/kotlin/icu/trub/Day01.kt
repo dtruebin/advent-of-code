@@ -1,6 +1,7 @@
+package icu.trub
+
 fun main() {
-    val inputFile = object {}.javaClass.getResourceAsStream("day01.txt") ?: return
-    val sum = inputFile.bufferedReader().lines()
+    val sum = object {}.javaClass.getResourceAsStream("day01.txt")!!.bufferedReader().lines()
         .map(::getDoubleDigitFromFirstAndLast)
         .toList()
         .sum()

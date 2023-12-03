@@ -1,3 +1,6 @@
+package icu.trub
+
+import icu.trub.getDoubleDigitFromFirstAndLast
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
