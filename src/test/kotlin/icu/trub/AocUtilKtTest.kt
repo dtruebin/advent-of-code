@@ -1,6 +1,5 @@
 package icu.trub
 
-import icu.trub.getDoubleDigitFromFirstAndLast
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -8,7 +7,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class Day01KtTest {
+class AocUtilKtTest {
     @ParameterizedTest
     @MethodSource
     fun testGetDoubleDigitFromFirstAndLast(input: String, expectedOutput: Int) {
