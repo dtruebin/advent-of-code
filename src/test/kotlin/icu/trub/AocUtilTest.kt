@@ -1,10 +1,12 @@
 package icu.trub
 
+import icu.trub.AocUtil.collectDigitsFromLine
+import icu.trub.AocUtil.getDoubleDigitFromFirstAndLast
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-class AocUtilKtTest {
+class AocUtilTest {
     @ParameterizedTest
     @CsvSource(
         "12, 12",

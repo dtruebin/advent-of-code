@@ -1,6 +1,8 @@
 package icu.trub
 
-import java.util.stream.Stream
+import icu.trub.AocUtil.collectDigitsFromLine
+import icu.trub.AocUtil.getDoubleDigitFromFirstAndLast
+import icu.trub.AocUtil.readTxtResource
 
 fun main() {
     println("Day 1, part 1: ${solveDay1a("day01.txt")}")
@@ -19,6 +21,3 @@ fun solveDay1b(inputFileName: String): Int =
         .map(::getDoubleDigitFromFirstAndLast)
         .toList()
         .sum()
-
-private fun readTxtResource(inputFileName: String): Stream<String> =
-    object {}.javaClass.getResourceAsStream(inputFileName)!!.bufferedReader().lines()
