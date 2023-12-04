@@ -16,14 +16,15 @@ val wordToDigitMap: Map<String, String> = mapOf(
     "nine" to "9"
 )
 
-val digitWordsRegex = wordToDigitMap.keys.joinToString(separator = "|").toRegex()
+val digitsRegex = (wordToDigitMap.keys.joinToString(separator = "|") + "|\\d").toRegex()
 
-// ToDo don't replace, collect
-fun replaceWordsWithDigits(line: String): String {
-    var result = line
+fun collectDigitsFromLine(line: String): String {
+    val result = mutableListOf<String>()
+    var startIndex = 0
     while (true) {
-        val match = digitWordsRegex.find(result)?.value ?: break
-        result = result.replaceFirst(match, wordToDigitMap[match]!!)
+        val find = digitsRegex.find(line, startIndex = startIndex) ?: break
+        result += wordToDigitMap[find.value] ?: find.value
+        startIndex = find.range.first + 1
     }
-    return result
+    return result.joinToString(separator = "")
 }

@@ -15,7 +15,7 @@ fun solveDay1a(inputFileName: String): Int =
 
 fun solveDay1b(inputFileName: String): Int =
     readTxtResource(inputFileName)
-        .map(::replaceWordsWithDigits)
+        .map(::collectDigitsFromLine)
         .map(::getDoubleDigitFromFirstAndLast)
         .toList()
         .sum()
