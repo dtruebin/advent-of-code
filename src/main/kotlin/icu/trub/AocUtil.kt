@@ -5,7 +5,6 @@ internal fun getDoubleDigitFromFirstAndLast(line: String): Int {
 }
 
 val wordToDigitMap: Map<String, String> = mapOf(
-    "zero" to "0",
     "one" to "1",
     "two" to "2",
     "three" to "3",
