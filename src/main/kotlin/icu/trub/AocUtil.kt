@@ -18,6 +18,7 @@ val wordToDigitMap: Map<String, String> = mapOf(
 
 val digitWordsRegex = wordToDigitMap.keys.joinToString(separator = "|").toRegex()
 
+// ToDo don't replace, collect
 fun replaceWordsWithDigits(line: String): String {
     var result = line
     while (true) {

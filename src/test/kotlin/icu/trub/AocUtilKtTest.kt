@@ -21,6 +21,9 @@ class AocUtilKtTest {
         "one, 1",
         "onetwo, 12",
         "one5two, 152",
+        "'', ''",
+        "wow, wow",
+        "one5eightwo, 1582", // ToDo fails for now
     )
     fun testReplaceWordsWithDigits(input: String, expectedOutput: String) {
         assertEquals(expectedOutput, replaceWordsWithDigits(input))
@@ -36,6 +39,7 @@ class AocUtilKtTest {
         "zoneight234, 14",
         "7pqrstsixteen, 76",
         "one, 11",
+        "one5eightwo, 12", // ToDo fails for now
     )
     fun testDay1bCombo(input: String, expectedOutput: Int) {
         assertEquals(expectedOutput, getDoubleDigitFromFirstAndLast(replaceWordsWithDigits(input)))
