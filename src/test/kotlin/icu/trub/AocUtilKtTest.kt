@@ -22,7 +22,7 @@ class AocUtilKtTest {
 
     @ParameterizedTest
     @MethodSource
-    fun testDay2Combo(input: String, expectedOutput: Int) {
+    fun testDay1bCombo(input: String, expectedOutput: Int) {
         assertEquals(expectedOutput, getDoubleDigitFromFirstAndLast(replaceWordsWithDigits(input)))
     }
 
