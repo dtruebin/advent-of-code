@@ -10,15 +10,14 @@ val bagContent = mapOf(
 )
 
 fun main() {
-    println("Day 2: ${solveDay2a(bagContent, "day02.txt")}")
+    println("Day 2, Part One: ${solveDay2a(bagContent, "day02.txt")}")
+    println("Day 2, Part Two: ${solveDay2b("day02.txt")}")
 }
 
 fun solveDay2a(bagContent: Map<Color, Int>, inputFileName: String): Int {
     var result = 0
 
-    val games = AocUtil.readTxtResource(inputFileName)
-        .map { line -> Game.parse(line) }
-        .toList()
+    val games = parseGames(inputFileName)
 
     val idToCombinedOutcome = buildMap {
         games.forEach { this[it.id] = it.getCombinedOutcome() }
@@ -35,6 +34,14 @@ fun solveDay2a(bagContent: Map<Color, Int>, inputFileName: String): Int {
     }
 
     return result
+}
+
+fun solveDay2b(inputFileName: String): Int = parseGames(inputFileName).sumOf(Game::getPowerOfMinimumCubeSet)
+
+private fun parseGames(inputFileName: String): List<Game> {
+    return AocUtil.readTxtResource(inputFileName)
+        .map { line -> Game.parse(line) }
+        .toList()
 }
 
 enum class Color {

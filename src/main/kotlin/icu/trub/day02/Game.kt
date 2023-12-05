@@ -39,6 +39,8 @@ class Game(val id: Int, val outcomes: List<Map<Color, Int>>) {
         return result.toMap()
     }
 
+    fun getPowerOfMinimumCubeSet(): Int = getCombinedOutcome().values.fold(1) { a, b -> a * b }
+
     override fun toString(): String {
         return "Game(id=$id, outcomes=$outcomes)"
     }

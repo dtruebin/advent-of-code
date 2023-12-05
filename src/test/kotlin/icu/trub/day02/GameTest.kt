@@ -30,6 +30,11 @@ class GameTest {
         assertEquals(expectedOutput, game.getCombinedOutcome())
     }
 
+    @Test
+    fun testGetPowerOfMinimumCubeSet() {
+        assertEquals(14 * 3 * 15, testGame.getPowerOfMinimumCubeSet())
+    }
+
     companion object {
         @JvmStatic
         fun testGetCombinedOutcome(): Stream<Arguments> = Stream.of(
