@@ -1,4 +1,4 @@
-package icu.trub
+package icu.trub.day01
 
 import icu.trub.AocUtil.collectDigitsFromLine
 import icu.trub.AocUtil.getDoubleDigitFromFirstAndLast
