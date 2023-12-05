@@ -7,12 +7,6 @@ fun main() {
     println("Day 3, Part Two: ${solveDay3b("day03.txt")}")
 }
 
-fun solveDay3a(inputFileName: String): Int {
-    val schematic = Schematic.parse(readTxtResource(inputFileName).toList())
-    return schematic.scanForPartNumbers().sum()
-}
-
-fun solveDay3b(inputFileName: String): Int {
-    val schematic = Schematic.parse(readTxtResource(inputFileName).toList())
-    return schematic.scanForGearRatios().sum()
-}
+fun solveDay3a(inputFileName: String): Int = parse(inputFileName).scanForPartNumbers().sum()
+fun solveDay3b(inputFileName: String): Int = parse(inputFileName).scanForGearRatios().sum()
+private fun parse(inputFileName: String) = Schematic.parse(readTxtResource(inputFileName).toList())
