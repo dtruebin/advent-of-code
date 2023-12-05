@@ -23,6 +23,19 @@ class Schematic(val content: Map<Coordinate, Char>) {
         return result
     }
 
+    fun scanForGearRatios(): List<Int> {
+        val result = mutableListOf<Int>()
+        for ((coordinate, char) in content) {
+            if (char == '*') {
+                val adjacentPartNumbers = getAdjacentPartNumbers(coordinate)
+                if (adjacentPartNumbers.size == 2) {
+                    result.add(adjacentPartNumbers[0] * adjacentPartNumbers[1])
+                }
+            }
+        }
+        return result
+    }
+
     fun getAdjacentPartNumbers(coordinate: Coordinate): List<Int> {
         val result = mutableListOf<Int?>()
 
