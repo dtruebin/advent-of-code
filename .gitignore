@@ -1,3 +1,5 @@
+**/src/main/**/resources/**/day??.txt
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
