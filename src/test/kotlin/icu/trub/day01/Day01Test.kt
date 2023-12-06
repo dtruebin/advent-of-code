@@ -17,8 +17,8 @@ class Day01Test {
     companion object {
         @JvmStatic
         fun testSolve(): Stream<Arguments> = Stream.of(
-            arguments(solveDay1a("day01a-test.txt"), 142),
-            arguments(solveDay1b("day01b-test.txt"), 281),
+            arguments(Day01("day01a-test.txt").solveDay1a(), 142),
+            arguments(Day01("day01b-test.txt").solveDay1b(), 281),
         )
     }
 }
