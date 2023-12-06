@@ -1,10 +1,11 @@
 package icu.trub.aoc.day04
 
-data class Scratchcard(val winningNumbers: Set<Int>, val actualNumbers: Set<Int>) {
+data class Scratchcard(val id: Int, val winningNumbers: Set<Int>, val actualNumbers: Set<Int>) {
     companion object {
         fun parse(line: String): Scratchcard {
-            val (_, winningStr, actualStr) = line.split(":", "|")
+            val (idStr, winningStr, actualStr) = line.split(":", "|")
             return Scratchcard(
+                idStr.split(" ").last().toInt(),
                 parseToIntSet(winningStr),
                 parseToIntSet(actualStr)
             )
@@ -29,4 +30,10 @@ data class Scratchcard(val winningNumbers: Set<Int>, val actualNumbers: Set<Int>
             }
             return result
         }
+
+    val matchingNumbers: Set<Int>
+        get() {
+            return actualNumbers.filter { n -> winningNumbers.contains(n) }.toSet()
+        }
+
 }

@@ -15,19 +15,25 @@ class ScratchcardTest {
         assertEquals(expected, scratchcard.points)
     }
 
+
+    @Test
+    fun testMatchingNumbers() {
+        assertEquals(4, testScratchcard.matchingNumbers.size)
+    }
+
     @Test
     fun testParse() {
         assertEquals(testScratchcard, Scratchcard.parse("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"))
     }
 
     companion object {
-        val testScratchcard = Scratchcard(setOf(41, 48, 83, 86, 17), setOf(83, 86, 6, 31, 17, 9, 48, 53))
+        val testScratchcard = Scratchcard(1, setOf(41, 48, 83, 86, 17), setOf(83, 86, 6, 31, 17, 9, 48, 53))
 
         @JvmStatic
         fun testPoints(): Stream<Arguments> {
             return Stream.of(
                 arguments(testScratchcard, 8),
-                arguments(Scratchcard(setOf(), setOf(1, 2, 3)), 0),
+                arguments(Scratchcard(123, setOf(), setOf(1, 2, 3)), 0),
             )
         }
     }
