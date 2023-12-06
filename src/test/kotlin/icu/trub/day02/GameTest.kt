@@ -9,19 +9,11 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-private const val testGameString = "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red"
-val testGame = Game(
-    4, listOf(
-        mapOf(RED to 3, GREEN to 1, BLUE to 6),
-        mapOf(RED to 6, GREEN to 3),
-        mapOf(RED to 14, GREEN to 3, BLUE to 15)
-    )
-)
 
 class GameTest {
     @Test
     fun testParse() {
-        assertEquals(testGame, Game.parse(testGameString))
+        assertEquals(testGame, Game.parse(TEST_GAME_STRING))
     }
 
     @ParameterizedTest
@@ -36,6 +28,15 @@ class GameTest {
     }
 
     companion object {
+        private const val TEST_GAME_STRING = "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red"
+        val testGame = Game(
+            4, listOf(
+                mapOf(RED to 3, GREEN to 1, BLUE to 6),
+                mapOf(RED to 6, GREEN to 3),
+                mapOf(RED to 14, GREEN to 3, BLUE to 15)
+            )
+        )
+
         @JvmStatic
         fun testGetCombinedOutcome(): Stream<Arguments> = Stream.of(
             arguments(testGame, mapOf(RED to 14, GREEN to 3, BLUE to 15)),
