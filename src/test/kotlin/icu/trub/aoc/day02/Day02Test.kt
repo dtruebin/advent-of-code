@@ -1,4 +1,4 @@
-package icu.trub.day02
+package icu.trub.aoc.day02
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

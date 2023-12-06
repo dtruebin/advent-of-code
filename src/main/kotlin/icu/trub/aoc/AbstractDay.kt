@@ -1,4 +1,4 @@
-package icu.trub
+package icu.trub.aoc
 
 abstract class AbstractDay(val inputFileName: String) {
     /**

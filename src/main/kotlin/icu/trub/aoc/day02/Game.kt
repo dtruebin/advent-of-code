@@ -1,4 +1,4 @@
-package icu.trub.day02
+package icu.trub.aoc.day02
 
 class Game(val id: Int, val outcomes: List<Map<Color, Int>>) {
     companion object {

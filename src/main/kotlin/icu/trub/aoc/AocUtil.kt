@@ -1,4 +1,4 @@
-package icu.trub
+package icu.trub.aoc
 
 import java.util.stream.Stream
 

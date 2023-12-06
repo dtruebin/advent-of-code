@@ -1,7 +1,7 @@
-package icu.trub.day03
+package icu.trub.aoc.day03
 
-import icu.trub.AbstractDay
-import icu.trub.AocUtil.readTxtResource
+import icu.trub.aoc.AbstractDay
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day03(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solve(): List<Int> = listOf(

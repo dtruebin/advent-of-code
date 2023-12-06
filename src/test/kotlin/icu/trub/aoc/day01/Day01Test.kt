@@ -1,4 +1,4 @@
-package icu.trub.day01
+package icu.trub.aoc.day01
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest

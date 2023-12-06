@@ -1,7 +1,7 @@
-package icu.trub
+package icu.trub.aoc
 
-import icu.trub.AocUtil.collectDigitsFromLine
-import icu.trub.AocUtil.getDoubleDigitFromFirstAndLast
+import icu.trub.aoc.AocUtil.collectDigitsFromLine
+import icu.trub.aoc.AocUtil.getDoubleDigitFromFirstAndLast
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource

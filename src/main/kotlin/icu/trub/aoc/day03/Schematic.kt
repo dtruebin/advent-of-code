@@ -1,4 +1,4 @@
-package icu.trub.day03
+package icu.trub.aoc.day03
 
 class Schematic(val content: Map<Coordinate, Char>) {
     companion object {

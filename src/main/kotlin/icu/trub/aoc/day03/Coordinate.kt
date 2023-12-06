@@ -1,4 +1,4 @@
-package icu.trub.day03
+package icu.trub.aoc.day03
 
 data class Coordinate(val x: Int, val y: Int) {
     fun left(): Coordinate = Coordinate(x - 1, y)

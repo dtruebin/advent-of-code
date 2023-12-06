@@ -1,9 +1,9 @@
-package icu.trub.day01
+package icu.trub.aoc.day01
 
-import icu.trub.AbstractDay
-import icu.trub.AocUtil.collectDigitsFromLine
-import icu.trub.AocUtil.getDoubleDigitFromFirstAndLast
-import icu.trub.AocUtil.readTxtResource
+import icu.trub.aoc.AbstractDay
+import icu.trub.aoc.AocUtil.collectDigitsFromLine
+import icu.trub.aoc.AocUtil.getDoubleDigitFromFirstAndLast
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day01(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solve(): List<Int> = listOf(

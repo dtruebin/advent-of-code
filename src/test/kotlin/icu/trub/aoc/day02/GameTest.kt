@@ -1,6 +1,6 @@
-package icu.trub.day02
+package icu.trub.aoc.day02
 
-import icu.trub.day02.Color.*
+import icu.trub.aoc.day02.Color.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest

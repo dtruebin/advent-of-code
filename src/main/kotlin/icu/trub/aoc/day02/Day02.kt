@@ -1,7 +1,7 @@
-package icu.trub.day02
+package icu.trub.aoc.day02
 
-import icu.trub.AbstractDay
-import icu.trub.AocUtil
+import icu.trub.aoc.AbstractDay
+import icu.trub.aoc.AocUtil
 
 class Day02(inputFileName: String) : AbstractDay(inputFileName) {
     companion object {

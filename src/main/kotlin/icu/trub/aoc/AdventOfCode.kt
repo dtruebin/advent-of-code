@@ -1,8 +1,8 @@
-package icu.trub
+package icu.trub.aoc
 
-import icu.trub.day01.Day01
-import icu.trub.day02.Day02
-import icu.trub.day03.Day03
+import icu.trub.aoc.day01.Day01
+import icu.trub.aoc.day02.Day02
+import icu.trub.aoc.day03.Day03
 
 fun main() {
     listOf(
