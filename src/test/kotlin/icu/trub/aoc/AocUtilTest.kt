@@ -1,8 +1,12 @@
 package icu.trub.aoc
 
 import icu.trub.aoc.AocUtil.collectDigitsFromLine
+import icu.trub.aoc.AocUtil.createAllDays
 import icu.trub.aoc.AocUtil.getDoubleDigitFromFirstAndLast
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assumptions.assumeTrue
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -47,4 +51,12 @@ class AocUtilTest {
         assertEquals(expectedOutput, getDoubleDigitFromFirstAndLast(collectDigitsFromLine(input)))
     }
 
+    @Test
+    fun testCreateAllDays() {
+        val inputFile = this.javaClass.classLoader.getResource(
+            "${this.javaClass.packageName.replace('.', '/')}/day01.txt"
+        )
+        assumeTrue(inputFile != null)
+        assertTrue(createAllDays().count() > 0)
+    }
 }

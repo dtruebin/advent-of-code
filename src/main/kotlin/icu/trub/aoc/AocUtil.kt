@@ -1,5 +1,7 @@
 package icu.trub.aoc
 
+import java.time.Month
+import java.time.YearMonth
 import java.util.stream.Stream
 
 object AocUtil {
@@ -37,4 +39,30 @@ object AocUtil {
      */
     fun readTxtResource(inputFileName: String): Stream<String> =
         object {}.javaClass.getResourceAsStream(inputFileName)!!.bufferedReader().lines()
+
+    private val daysInDecember = YearMonth.of(2023, Month.DECEMBER).lengthOfMonth()
+
+    /**
+     * @return sequence of all available concrete [AbstractDay] instances, created using `"day<N>.txt"` as the argument.
+     */
+    fun createAllDays() = (daysInDecember downTo 1).asSequence().map { createDay(it) }.filterNotNull()
+
+    private fun createDay(n: Int): AbstractDay? {
+        val s = n.toString().padStart(2, '0')
+        return try {
+            val clazz = Class.forName("${this::class.java.packageName}.day$s.Day$s")
+            clazz.declaredConstructors[0].newInstance("${clazz.simpleName.lowercase()}.txt") as AbstractDay
+        } catch (_: ClassNotFoundException) {
+            null
+        } catch (t: Throwable) {
+            System.err.println(t)
+            null
+        }
+    }
+
+    fun AbstractDay.trySolve(): List<Int>? = try {
+        solve()
+    } catch (e: Throwable) {
+        null
+    }
 }
