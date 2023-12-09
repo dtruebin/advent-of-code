@@ -1,7 +1,7 @@
 package icu.trub.aoc.day06
 
-data class Race(val allowedTime: Int, val recordDistance: Int) {
-    fun getOutcome(buttonHoldTime: Int): Int {
+data class Race(val allowedTime: Long, val recordDistance: Long) {
+    fun getOutcome(buttonHoldTime: Long): Long {
         val speed = when (buttonHoldTime < allowedTime) {
             true -> buttonHoldTime
             false -> 0

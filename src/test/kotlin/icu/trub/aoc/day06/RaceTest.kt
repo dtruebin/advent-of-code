@@ -17,7 +17,7 @@ class RaceTest {
             "7,0"
         ]
     )
-    fun testGetOutcome(buttonHoldTime: Int, expectedDistance: Int) {
+    fun testGetOutcome(buttonHoldTime: Long, expectedDistance: Long) {
         assertEquals(expectedDistance, race.getOutcome(buttonHoldTime))
     }
 
