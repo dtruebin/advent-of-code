@@ -9,7 +9,5 @@ class Day05(inputFileName: String) : AbstractDay(inputFileName) {
 
     override fun solvePartOne(): Int = almanac.locations.min().toInt() // phew, it fits
 
-    override fun solvePartTwo(): Int {
-        TODO("Skipped for now")
-    }
+    override fun solvePartTwo(): Int? = null // TODO("Skipped for now")
 }
