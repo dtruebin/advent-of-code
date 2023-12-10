@@ -1,11 +1,7 @@
 package icu.trub.aoc.day03
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import icu.trub.aoc.AbstractDayTest
 
-class Day03Test {
-    @Test
-    fun testSolve() {
-        assertEquals(listOf(4361, 467835), Day03("day03-test.txt").solve())
-    }
+class Day03Test : AbstractDayTest<Day03>(Day03::class.java) {
+    override val expectedSolutions = listOf(4361, 467835)
 }

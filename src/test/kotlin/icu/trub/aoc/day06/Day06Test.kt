@@ -1,26 +1,20 @@
 package icu.trub.aoc.day06
 
+import icu.trub.aoc.AbstractDayTest
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class Day06Test {
-    private val day06 = Day06("day06-test.txt")
-
-    @Test
-    fun testSolve() {
-        val solutions = day06.solve()
-        assertEquals(listOf(288, 71503), solutions)
-    }
+class Day06Test : AbstractDayTest<Day06>(Day06::class.java) {
+    override val expectedSolutions = listOf(288, 71503)
 
     @ParameterizedTest
     @MethodSource
     fun testParse(fixBadKerning: Boolean, expected: List<Race>) {
-        val races = day06.parseInput(fixBadKerning)
+        val races = day.parseInput(fixBadKerning)
         assertEquals(expected, races)
     }
 
