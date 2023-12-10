@@ -2,6 +2,7 @@ package icu.trub.aoc.day07
 
 enum class Card {
     // Ordered by strength, lowest to highest
+    CJJ,
     C2,
     C3,
     C4,
