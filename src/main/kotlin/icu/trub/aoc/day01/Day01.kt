@@ -6,18 +6,13 @@ import icu.trub.aoc.AocUtil.getDoubleDigitFromFirstAndLast
 import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day01(inputFileName: String) : AbstractDay(inputFileName) {
-    override fun solve(): List<Int> = listOf(
-        solveDay1a(),
-        solveDay1b()
-    )
-
-    fun solveDay1a(): Int =
+    public override fun solvePartOne(): Int =
         readTxtResource(inputFileName)
             .map(::getDoubleDigitFromFirstAndLast)
             .toList()
             .sum()
 
-    fun solveDay1b(): Int =
+    public override fun solvePartTwo(): Int =
         readTxtResource(inputFileName)
             .map(::collectDigitsFromLine)
             .map(::getDoubleDigitFromFirstAndLast)

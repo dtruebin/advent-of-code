@@ -12,12 +12,7 @@ class Day02(inputFileName: String) : AbstractDay(inputFileName) {
         )
     }
 
-    override fun solve(): List<Int> = listOf(
-        solveDay2a(bagContent),
-        solveDay2b()
-    )
-
-    private fun solveDay2a(bagContent: Map<Color, Int>): Int {
+    override fun solvePartOne(): Int {
         var result = 0
 
         val games = parseGames(inputFileName)
@@ -39,7 +34,7 @@ class Day02(inputFileName: String) : AbstractDay(inputFileName) {
         return result
     }
 
-    private fun solveDay2b(): Int = parseGames(inputFileName).sumOf(Game::getPowerOfMinimumCubeSet)
+    override fun solvePartTwo(): Int = parseGames(inputFileName).sumOf(Game::getPowerOfMinimumCubeSet)
 
     private fun parseGames(inputFileName: String): List<Game> {
         return AocUtil.readTxtResource(inputFileName)

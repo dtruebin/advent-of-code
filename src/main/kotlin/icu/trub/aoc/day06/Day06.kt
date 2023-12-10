@@ -4,17 +4,12 @@ import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
 
 class Day06(inputFileName: String) : AbstractDay(inputFileName) {
-    override fun solve(): List<Int> = listOf(
-        solvePartOne(),
-        solvePartTwo()
-    )
-
-    private fun solvePartOne(): Int {
+    override fun solvePartOne(): Int {
         val races = parseInput()
         return races.map { it.getCountOfPossibleWins() }.fold(1) { a, b -> a * b }
     }
 
-    private fun solvePartTwo(): Int {
+    override fun solvePartTwo(): Int {
         val races = parseInput(fixBadKerning = true)
         return races.map { it.getCountOfPossibleWins() }.fold(1) { a, b -> a * b }
     }

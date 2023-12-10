@@ -7,18 +7,13 @@ import java.util.function.Function
 import java.util.stream.Collectors.toMap
 
 class Day04(inputFileName: String) : AbstractDay(inputFileName) {
-    override fun solve(): List<Int> = listOf(
-        solvePartOne(),
-        solvePartTwo()
-    )
-
-    private fun solvePartOne() = AocUtil.readTxtResource(inputFileName)
+    override fun solvePartOne() = AocUtil.readTxtResource(inputFileName)
         .map(Scratchcard.Companion::parse)
         .map(Scratchcard::points)
         .toList()
         .sum()
 
-    private fun solvePartTwo(): Int {
+    override fun solvePartTwo(): Int {
         val originalCards = AocUtil.readTxtResource(inputFileName)
             .map(Scratchcard.Companion::parse)
             .collect(toMap(Scratchcard::id, Function.identity()))
