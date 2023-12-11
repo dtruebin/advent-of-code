@@ -65,4 +65,30 @@ object AocUtil {
     } catch (e: Throwable) {
         null
     }
+
+    /**
+     * Finds least common multiple of numbers in the list (`0` if the list is empty).
+     */
+    fun findLCM(numbers: List<Long>): Long {
+        if (numbers.isEmpty()) return 0
+        if (numbers.size == 1) return numbers.single()
+        var result = numbers[0]
+        for (i in 1..<numbers.size) {
+            result = findLCM(result, numbers[i])
+        }
+        return result
+    }
+
+    private fun findLCM(a: Long, b: Long): Long {
+        val larger = if (a > b) a else b
+        val maxLcm = a * b
+        var lcm = larger
+        while (lcm <= maxLcm) {
+            if (lcm % a == 0L && lcm % b == 0L) {
+                return lcm
+            }
+            lcm += larger
+        }
+        return maxLcm
+    }
 }

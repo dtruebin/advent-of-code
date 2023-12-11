@@ -1,17 +1,23 @@
 package icu.trub.aoc.day08
 
+import icu.trub.aoc.AocUtil
+
 class Network(val nodes: Map<String, Pair<String, String>>) {
-    fun navigate(startingNode: String, targetNode: String, instructions: String): List<String> = buildList {
-        val i = ArrayDeque(instructions.toList())
-        var currentNode = startingNode
-        while (currentNode != targetNode) {
-            when (i.rotate()) {
-                'L' -> currentNode = nodes[currentNode]!!.first
-                'R' -> currentNode = nodes[currentNode]!!.second
-            }
-            add(currentNode)
-        }
-    }
+    fun navigate(startingNodeSuffix: String, targetNodeSuffix: String, instructions: String): Long =
+        nodes.keys.filter { it.endsWith(startingNodeSuffix) }
+            .map { startingNode ->
+                val i = ArrayDeque(instructions.toList())
+                var currentNode = startingNode
+                var hops = 0L
+                while (!currentNode.endsWith(targetNodeSuffix)) {
+                    hops++
+                    when (i.rotate()) {
+                        'L' -> currentNode = nodes[currentNode]!!.first
+                        'R' -> currentNode = nodes[currentNode]!!.second
+                    }
+                }
+                hops
+            }.let { AocUtil.findLCM(it) }
 
     /**
      * Polls the queue and adds the same element back into it.

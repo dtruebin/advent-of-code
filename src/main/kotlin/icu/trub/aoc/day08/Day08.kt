@@ -7,8 +7,13 @@ class Day08(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solvePartOne(): Int = with(AocUtil.readTxtResource(inputFileName).toList()) {
         Network.parse(subList(2, size))
             .navigate("AAA", "ZZZ", first())
-            .count()
+            .toInt()
     }
 
-    override fun solvePartTwo(): Int? = null // TODO Not yet implemented
+    override fun solvePartTwo(): Int = with(AocUtil.readTxtResource(inputFileName).toList()) {
+        Network.parse(subList(2, size))
+            .navigate("A", "Z", first())
+            .also { if (it > Int.MAX_VALUE) println("Day 8, Part Two - actual solution (before conversion to Int): $it") }
+            .toInt()
+    }
 }

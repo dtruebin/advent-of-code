@@ -21,6 +21,6 @@ class NetworkTest {
     @Test
     fun testNavigate() {
         val hops = network.navigate("AAA", "ZZZ", "LLR")
-        assertEquals(6, hops.size)
+        assertEquals(6, hops)
     }
 }
