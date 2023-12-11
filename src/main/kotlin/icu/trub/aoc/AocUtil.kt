@@ -37,7 +37,7 @@ object AocUtil {
     /**
      * @return stream of lines in the file
      */
-    fun readTxtResource(inputFileName: String): Stream<String> =
+    fun readTxtResource(inputFileName: String): Stream<String> = // TODO return a Sequence
         object {}.javaClass.getResourceAsStream(inputFileName)!!.bufferedReader().lines()
 
     private val daysInDecember = YearMonth.of(2023, Month.DECEMBER).lengthOfMonth()

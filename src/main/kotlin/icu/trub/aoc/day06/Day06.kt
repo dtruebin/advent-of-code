@@ -4,15 +4,13 @@ import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
 
 class Day06(inputFileName: String) : AbstractDay(inputFileName) {
-    override fun solvePartOne(): Int {
-        val races = parseInput()
-        return races.map { it.getCountOfPossibleWins() }.fold(1) { a, b -> a * b }
-    }
+    override fun solvePartOne() = parseInput()
+        .extractSolution()
 
-    override fun solvePartTwo(): Int {
-        val races = parseInput(fixBadKerning = true)
-        return races.map { it.getCountOfPossibleWins() }.fold(1) { a, b -> a * b }
-    }
+    override fun solvePartTwo() = parseInput(fixBadKerning = true)
+        .extractSolution()
+
+    private fun List<Race>.extractSolution(): Int = map { it.getCountOfPossibleWins() }.fold(1) { a, b -> a * b }
 
     internal fun parseInput(fixBadKerning: Boolean = false): List<Race> {
         val (times, distances) = AocUtil.readTxtResource(inputFileName).toList().map {

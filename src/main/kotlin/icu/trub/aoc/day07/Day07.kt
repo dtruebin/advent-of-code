@@ -5,13 +5,11 @@ import icu.trub.aoc.AocUtil
 import kotlin.streams.asSequence
 
 class Day07(inputFileName: String) : AbstractDay(inputFileName) {
-    override fun solvePartOne(): Int = with(parseHandToBid(inputFileName)) {
-        extractSolution()
-    }
+    override fun solvePartOne() = parseHandToBid(inputFileName)
+        .extractSolution()
 
-    override fun solvePartTwo(): Int = with(parseHandToBid(inputFileName, withJokers = true)) {
-        extractSolution()
-    }
+    override fun solvePartTwo() = parseHandToBid(inputFileName, withJokers = true)
+        .extractSolution()
 
     private fun Map<Hand, Int>.extractSolution() = keys.sorted()
         .mapIndexed { i, hand -> i.inc() * this[hand]!! }

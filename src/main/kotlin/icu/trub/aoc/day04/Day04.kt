@@ -3,20 +3,17 @@ package icu.trub.aoc.day04
 import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
 import java.util.*
-import java.util.function.Function
-import java.util.stream.Collectors.toMap
+import kotlin.streams.asSequence
 
 class Day04(inputFileName: String) : AbstractDay(inputFileName) {
-    override fun solvePartOne() = AocUtil.readTxtResource(inputFileName)
-        .map(Scratchcard.Companion::parse)
-        .map(Scratchcard::points)
-        .toList()
-        .sum()
+    private val input
+        get() = AocUtil.readTxtResource(inputFileName).asSequence()
+            .map { Scratchcard.parse(it) }
+
+    override fun solvePartOne() = input.sumOf { it.points }
 
     override fun solvePartTwo(): Int {
-        val originalCards = AocUtil.readTxtResource(inputFileName)
-            .map(Scratchcard.Companion::parse)
-            .collect(toMap(Scratchcard::id, Function.identity()))
+        val originalCards = input.associateBy { it.id }
 
         val cardQueue = PriorityQueue(Comparator.comparingInt(Scratchcard::id))
         cardQueue.addAll(originalCards.values)
