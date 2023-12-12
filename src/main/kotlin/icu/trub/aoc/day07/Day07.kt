@@ -2,7 +2,6 @@ package icu.trub.aoc.day07
 
 import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
-import kotlin.streams.asSequence
 
 class Day07(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solvePartOne() = parseHandToBid(inputFileName)
@@ -16,7 +15,7 @@ class Day07(inputFileName: String) : AbstractDay(inputFileName) {
         .sum()
 
     private fun parseHandToBid(inputFileName: String, withJokers: Boolean = false) = buildMap {
-        AocUtil.readTxtResource(inputFileName).asSequence().forEach { line ->
+        AocUtil.readTxtResource(inputFileName).forEach { line ->
             line.split(" ").also {
                 put(Hand.parse(it[0], withJokers), it[1].toInt())
             }

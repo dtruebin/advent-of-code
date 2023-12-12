@@ -2,10 +2,9 @@ package icu.trub.aoc.day09
 
 import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
-import kotlin.streams.asSequence
 
 class Day09(inputFileName: String) : AbstractDay(inputFileName) {
-    private val histories = AocUtil.readTxtResource(inputFileName).asSequence()
+    private val histories = AocUtil.readTxtResource(inputFileName)
         .map { it.split(" ").map { s -> s.toInt() } }
         .toList()
 

@@ -3,12 +3,10 @@ package icu.trub.aoc.day04
 import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
 import java.util.*
-import kotlin.streams.asSequence
 
 class Day04(inputFileName: String) : AbstractDay(inputFileName) {
     private val input
-        get() = AocUtil.readTxtResource(inputFileName).asSequence()
-            .map { Scratchcard.parse(it) }
+        get() = AocUtil.readTxtResource(inputFileName).map { Scratchcard.parse(it) }
 
     override fun solvePartOne() = input.sumOf { it.points }
 

@@ -2,7 +2,6 @@ package icu.trub.aoc
 
 import java.time.Month
 import java.time.YearMonth
-import java.util.stream.Stream
 
 object AocUtil {
     private val wordToDigitMap: Map<String, String> = mapOf(
@@ -37,8 +36,8 @@ object AocUtil {
     /**
      * @return stream of lines in the file
      */
-    fun readTxtResource(inputFileName: String): Stream<String> = // TODO return a Sequence
-        object {}.javaClass.getResourceAsStream(inputFileName)!!.bufferedReader().lines()
+    fun readTxtResource(inputFileName: String) =
+        object {}.javaClass.getResourceAsStream(inputFileName)!!.bufferedReader().lineSequence()
 
     private val daysInDecember = YearMonth.of(2023, Month.DECEMBER).lengthOfMonth()
 

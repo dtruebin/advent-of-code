@@ -2,10 +2,9 @@ package icu.trub.aoc.day08
 
 import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
-import kotlin.streams.asSequence
 
 class Day08(inputFileName: String) : AbstractDay(inputFileName) {
-    private val input = AocUtil.readTxtResource(inputFileName).asSequence().toList()
+    private val input = AocUtil.readTxtResource(inputFileName).toList()
 
     override fun solvePartOne(): Int = with(input) {
         Network.parse(drop(2))
