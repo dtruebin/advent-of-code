@@ -12,6 +12,5 @@ class Day09(inputFileName: String) : AbstractDay(inputFileName) {
 
     override fun solvePartOne(): Int = histories.sumOf { it.extrapolate() }
 
-
-    override fun solvePartTwo(): Int? = null // TODO Not yet implemented
+    override fun solvePartTwo(): Int = histories.sumOf { it.extrapolate(forward = false) }
 }
