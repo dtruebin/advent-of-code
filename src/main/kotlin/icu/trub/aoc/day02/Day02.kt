@@ -4,13 +4,9 @@ import icu.trub.aoc.AbstractDay
 import icu.trub.aoc.AocUtil
 
 class Day02(inputFileName: String) : AbstractDay(inputFileName) {
-    companion object {
-        val bagContent = mapOf(
-            Color.RED to 12,
-            Color.GREEN to 13,
-            Color.BLUE to 14
-        )
-    }
+    private val games: List<Game> = AocUtil.readTxtResource(inputFileName)
+        .map { line -> Game.parse(line) }
+        .toList()
 
     override fun solvePartOne(): Int {
         var result = 0
@@ -34,7 +30,11 @@ class Day02(inputFileName: String) : AbstractDay(inputFileName) {
 
     override fun solvePartTwo(): Int = games.sumOf(Game::getPowerOfMinimumCubeSet)
 
-    private val games: List<Game> = AocUtil.readTxtResource(inputFileName)
-        .map { line -> Game.parse(line) }
-        .toList()
+    companion object {
+        val bagContent = mapOf(
+            Color.RED to 12,
+            Color.GREEN to 13,
+            Color.BLUE to 14
+        )
+    }
 }
