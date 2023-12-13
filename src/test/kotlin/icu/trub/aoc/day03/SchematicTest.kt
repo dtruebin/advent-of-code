@@ -1,6 +1,7 @@
 package icu.trub.aoc.day03
 
 import icu.trub.aoc.AocUtil
+import icu.trub.aoc.util.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest

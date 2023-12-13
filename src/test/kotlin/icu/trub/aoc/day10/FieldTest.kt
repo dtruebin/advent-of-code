@@ -2,6 +2,7 @@ package icu.trub.aoc.day10
 
 import icu.trub.aoc.day10.Direction.*
 import icu.trub.aoc.day10.Field.Companion.ANIMAL
+import icu.trub.aoc.util.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll

@@ -1,5 +1,7 @@
 package icu.trub.aoc.day03
 
+import icu.trub.aoc.util.Coordinate
+
 class Schematic(val content: Map<Coordinate, Char>) {
     companion object {
         fun parse(strings: List<String>): Schematic {

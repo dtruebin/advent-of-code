@@ -1,5 +1,7 @@
 package icu.trub.aoc.day10
 
+import icu.trub.aoc.util.Coordinate
+
 class Field(private val matrix: Map<Coordinate, Char>) {
     operator fun get(x: Int, y: Int): Char? = matrix[Coordinate(x, y)]
     internal fun findAnimal(): Coordinate = matrix.filterValues { it == ANIMAL }.keys.single()
