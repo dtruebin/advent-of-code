@@ -11,8 +11,7 @@ class Field(private val matrix: Map<Coordinate, Char>) {
         var foundAt: Direction? = null
         do {
             val lastCameFrom = foundAt?.invert()
-            val (direction, _) = findNext(cursor, exclude = lastCameFrom) ?: break
-            foundAt = direction
+            foundAt = findNextDirection(cursor, exclude = lastCameFrom) ?: break
             cursor = cursor.shiftTo(foundAt)
             add(cursor)
         } while (start !in this || size == 0)
@@ -23,20 +22,20 @@ class Field(private val matrix: Map<Coordinate, Char>) {
      * @param current coordinate whose adjacent coordinates will be checked
      * @param exclude direction to be excluded from checking. Allows to avoid checking the same direction
      *        we potentially came from
-     * @return a tuple of [Direction] relative to the current coordinate where a pipe was found, and
-     *         the char representing the pipe itself; `null` if nothing could be found
+     * @return the [Direction] relative to the current coordinate where a connecting pipe was found,
+     *         or `null` if nothing could be found
      */
-    internal fun findNext(current: Coordinate, exclude: Direction? = null): Pair<Direction, Char>? {
+    internal fun findNextDirection(current: Coordinate, exclude: Direction? = null): Direction? {
         val outgoingDirections = Pipe.by(matrix[current]!!)?.connectsTo ?: Direction.entries
         val possibleDirections = outgoingDirections.filter { it != exclude }
         for (direction in possibleDirections) {
             val char = matrix[current.shiftTo(direction)] ?: continue
             val foundPipe = when (char) {
-                ANIMAL -> return direction to char // closing the loop, so definitely can connect to this pipe
+                ANIMAL -> return direction // closing the loop, so definitely can connect to this pipe
                 else -> Pipe.by(char) ?: continue
             }
             if (canConnectTo(foundPipe).towards(direction)) {
-                return direction to char
+                return direction
             }
         }
         return null

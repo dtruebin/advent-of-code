@@ -38,10 +38,10 @@ class FieldTest {
     @Test
     fun testFindNext() {
         assertAll(
-            { assertEquals(EAST to 'J', field.findNext(animalCoordinate)) },
-            { assertEquals(NORTH to '|', field.findNext(Coordinate(3, 2))) },
-            { assertEquals(EAST to '7', field.findNext(Coordinate(3, 2), exclude = NORTH)) },
-            { assertEquals(SOUTH to '|', field.findNext(Coordinate(3, 0), exclude = WEST)) },
+            { assertEquals(EAST /*to 'J'*/, field.findNextDirection(animalCoordinate)) },
+            { assertEquals(NORTH /*to '|'*/, field.findNextDirection(Coordinate(3, 2))) },
+            { assertEquals(EAST /*to '7'*/, field.findNextDirection(Coordinate(3, 2), exclude = NORTH)) },
+            { assertEquals(SOUTH /*to '|'*/, field.findNextDirection(Coordinate(3, 0), exclude = WEST)) },
         )
     }
 }
