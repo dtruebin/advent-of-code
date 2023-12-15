@@ -23,7 +23,7 @@ class FieldTest {
     fun testParse() {
         assertAll(
             { assertEquals(null, field[100, 100]) },
-            { assertEquals(null, field[0, 0]) },
+            { assertEquals('.', field[0, 0]) },
             { assertEquals(ANIMAL, field[0, 2]) },
             { assertEquals('J', field[1, 2]) },
             { assertEquals('7', field[4, 2]) },

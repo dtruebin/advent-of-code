@@ -6,17 +6,16 @@ class Field(private val matrix: Map<Coordinate, Char>) {
     operator fun get(x: Int, y: Int): Char? = matrix[Coordinate(x, y)]
     internal fun findAnimal(): Coordinate = matrix.filterValues { it == ANIMAL }.keys.single()
 
-    fun findLoop(start: Coordinate = findAnimal()): List<Pair<Coordinate, Char>> = buildList {
-        add(start to matrix[start]!!)
+    fun findLoop(start: Coordinate = findAnimal()): List<Coordinate> = buildList {
         var cursor: Coordinate = start
         var foundAt: Direction? = null
-        while (cursor != start || size == 1) {
+        do {
             val lastCameFrom = foundAt?.invert()
-            val (direction, char) = findNext(cursor, exclude = lastCameFrom) ?: break
+            val (direction, _) = findNext(cursor, exclude = lastCameFrom) ?: break
             foundAt = direction
             cursor = cursor.shiftTo(foundAt)
-            add(cursor to char)
-        }
+            add(cursor)
+        } while (start !in this || size == 0)
     }
 
     /**
@@ -32,7 +31,10 @@ class Field(private val matrix: Map<Coordinate, Char>) {
         val possibleDirections = outgoingDirections.filter { it != exclude }
         for (direction in possibleDirections) {
             val char = matrix[current.shiftTo(direction)] ?: continue
-            val foundPipe = Pipe.by(char) ?: continue
+            val foundPipe = when (char) {
+                ANIMAL -> return direction to char // closing the loop, so definitely can connect to this pipe
+                else -> Pipe.by(char) ?: continue
+            }
             if (canConnectTo(foundPipe).towards(direction)) {
                 return direction to char
             }
@@ -45,12 +47,11 @@ class Field(private val matrix: Map<Coordinate, Char>) {
     private fun Pipe.towards(direction: Direction) = this.connectsTo.contains(direction.invert())
 
     companion object {
-        private const val GROUND = '.'
         internal const val ANIMAL = 'S'
         fun parse(input: List<String>): Field = Field(buildMap {
-            for ((row, line) in input.withIndex()) {
-                for ((col, char) in line.withIndex()) {
-                    if (char != GROUND) put(Coordinate(col, row), char)
+            input.forEachIndexed { row, line ->
+                line.forEachIndexed { col, char ->
+                    put(Coordinate(col, row), char)
                 }
             }
         })
