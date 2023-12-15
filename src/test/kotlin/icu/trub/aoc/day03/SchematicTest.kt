@@ -1,7 +1,7 @@
 package icu.trub.aoc.day03
 
 import icu.trub.aoc.AocUtil
-import icu.trub.aoc.util.Coordinate
+import icu.trub.aoc.util.Point
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -15,17 +15,17 @@ class SchematicTest {
 
     @Test
     fun testParse() {
-        assertEquals('4', schematic.content[Coordinate(0, 0)])
-        assertEquals('.', schematic.content[Coordinate(0, input.lastIndex)])
-        assertEquals('6', schematic.content[Coordinate(1, input.lastIndex)])
-        assertEquals('6', schematic.content[Coordinate(2, input.lastIndex)])
-        assertEquals('4', schematic.content[Coordinate(3, input.lastIndex)])
+        assertEquals('4', schematic.content[Point(0, 0)])
+        assertEquals('.', schematic.content[Point(0, input.lastIndex)])
+        assertEquals('6', schematic.content[Point(1, input.lastIndex)])
+        assertEquals('6', schematic.content[Point(2, input.lastIndex)])
+        assertEquals('4', schematic.content[Point(3, input.lastIndex)])
     }
 
     @ParameterizedTest
     @MethodSource
     fun testGetAdjacentNumbers(x: Int, y: Int, expected: List<Int>) {
-        assertEquals(expected, schematic.getAdjacentPartNumbers(Coordinate(x, y)))
+        assertEquals(expected, schematic.getAdjacentPartNumbers(Point(x, y)))
     }
 
     companion object {

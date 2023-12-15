@@ -1,14 +1,14 @@
 package icu.trub.aoc.day03
 
-import icu.trub.aoc.util.Coordinate
+import icu.trub.aoc.util.Point
 
-class Schematic(val content: Map<Coordinate, Char>) {
+class Schematic(val content: Map<Point, Char>) {
     companion object {
         fun parse(strings: List<String>): Schematic {
-            val content = mutableMapOf<Coordinate, Char>()
+            val content = mutableMapOf<Point, Char>()
             for ((y, string) in strings.withIndex()) {
                 for ((x, char) in string.withIndex()) {
-                    content[Coordinate(x, y)] = char
+                    content[Point(x, y)] = char
                 }
             }
             return Schematic(content)
@@ -38,52 +38,52 @@ class Schematic(val content: Map<Coordinate, Char>) {
         return result
     }
 
-    fun getAdjacentPartNumbers(coordinate: Coordinate): List<Int> {
+    fun getAdjacentPartNumbers(point: Point): List<Int> {
         val result = mutableListOf<Int?>()
 
-        if (content[coordinate.up()]?.isDigit() == true) {
+        if (content[point.up()]?.isDigit() == true) {
             // straight above
-            result.add(expandSelection(coordinate.up()))
+            result.add(expandSelection(point.up()))
         } else {
             // above left
-            result.add(expandSelection(coordinate.up().left()))
+            result.add(expandSelection(point.up().left()))
             // above right
-            result.add(expandSelection(coordinate.up().right()))
+            result.add(expandSelection(point.up().right()))
         }
 
-        if (content[coordinate.down()]?.isDigit() == true) {
+        if (content[point.down()]?.isDigit() == true) {
             // straight below
-            result.add(expandSelection(coordinate.down()))
+            result.add(expandSelection(point.down()))
         } else {
             // below left
-            result.add(expandSelection(coordinate.down().left()))
+            result.add(expandSelection(point.down().left()))
             // below right
-            result.add(expandSelection(coordinate.down().right()))
+            result.add(expandSelection(point.down().right()))
         }
 
-        result.add(expandSelection(coordinate.left()))
-        result.add(expandSelection(coordinate.right()))
+        result.add(expandSelection(point.left()))
+        result.add(expandSelection(point.right()))
 
         return result.filterNotNull()
     }
 
-    private fun expandSelection(startingCoordinate: Coordinate): Int? {
-        if (content[startingCoordinate]?.isDigit() == false) {
+    private fun expandSelection(startingPoint: Point): Int? {
+        if (content[startingPoint]?.isDigit() == false) {
             return null
         }
 
-        var curX: Int = startingCoordinate.x
-        val curY: Int = startingCoordinate.y
+        var curX: Int = startingPoint.x
+        val curY: Int = startingPoint.y
 
         // rewind left till first non-digit
-        while (content[Coordinate(curX, curY)]?.isDigit() == true) {
+        while (content[Point(curX, curY)]?.isDigit() == true) {
             curX--
         }
 
         // rewind right & append digits
         return buildString {
-            while (content[Coordinate(++curX, curY)]?.isDigit() == true) {
-                append(content[Coordinate(curX, curY)])
+            while (content[Point(++curX, curY)]?.isDigit() == true) {
+                append(content[Point(curX, curY)])
             }
         }.toInt()
     }

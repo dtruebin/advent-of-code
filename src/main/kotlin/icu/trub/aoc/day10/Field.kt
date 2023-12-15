@@ -1,13 +1,13 @@
 package icu.trub.aoc.day10
 
-import icu.trub.aoc.util.Coordinate
+import icu.trub.aoc.util.Point
 
-class Field(private val matrix: Map<Coordinate, Char>) {
-    operator fun get(x: Int, y: Int): Char? = matrix[Coordinate(x, y)]
-    internal fun findAnimal(): Coordinate = matrix.filterValues { it == ANIMAL }.keys.single()
+class Field(private val matrix: Map<Point, Char>) {
+    operator fun get(x: Int, y: Int): Char? = matrix[Point(x, y)]
+    internal fun findAnimal(): Point = matrix.filterValues { it == ANIMAL }.keys.single()
 
-    fun findLoop(start: Coordinate = findAnimal()): List<Coordinate> = buildList {
-        var cursor: Coordinate = start
+    fun findLoop(start: Point = findAnimal()): List<Point> = buildList {
+        var cursor: Point = start
         var foundAt: Direction? = null
         do {
             val lastCameFrom = foundAt?.invert()
@@ -25,7 +25,7 @@ class Field(private val matrix: Map<Coordinate, Char>) {
      * @return the [Direction] relative to the current coordinate where a connecting pipe was found,
      *         or `null` if nothing could be found
      */
-    internal fun findNextDirection(current: Coordinate, exclude: Direction? = null): Direction? {
+    internal fun findNextDirection(current: Point, exclude: Direction? = null): Direction? {
         val outgoingDirections = Pipe.by(matrix[current]!!)?.connectsTo ?: Direction.entries
         val possibleDirections = outgoingDirections.filter { it != exclude }
         for (direction in possibleDirections) {
@@ -50,7 +50,7 @@ class Field(private val matrix: Map<Coordinate, Char>) {
         fun parse(input: List<String>): Field = Field(buildMap {
             input.forEachIndexed { row, line ->
                 line.forEachIndexed { col, char ->
-                    put(Coordinate(col, row), char)
+                    put(Point(col, row), char)
                 }
             }
         })

@@ -1,7 +1,7 @@
 package icu.trub.aoc.day10
 
 import icu.trub.aoc.day10.Direction.*
-import icu.trub.aoc.util.Coordinate
+import icu.trub.aoc.util.Point
 
 enum class Direction {
     NORTH, EAST, SOUTH, WEST;
@@ -14,7 +14,7 @@ enum class Direction {
     }
 }
 
-fun Coordinate.shiftTo(direction: Direction): Coordinate = when (direction) {
+fun Point.shiftTo(direction: Direction): Point = when (direction) {
     NORTH -> up()
     EAST -> right()
     SOUTH -> down()

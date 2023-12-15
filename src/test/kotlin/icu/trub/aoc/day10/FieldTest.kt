@@ -2,7 +2,7 @@ package icu.trub.aoc.day10
 
 import icu.trub.aoc.day10.Direction.*
 import icu.trub.aoc.day10.Field.Companion.ANIMAL
-import icu.trub.aoc.util.Coordinate
+import icu.trub.aoc.util.Point
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -17,7 +17,7 @@ class FieldTest {
 
     private val field = Field.parse(input)
 
-    private val animalCoordinate = Coordinate(0, 2)
+    private val animalCoordinates = Point(0, 2)
 
     @Test
     fun testParse() {
@@ -32,16 +32,16 @@ class FieldTest {
 
     @Test
     fun testFindAnimal() {
-        assertEquals(animalCoordinate, field.findAnimal())
+        assertEquals(animalCoordinates, field.findAnimal())
     }
 
     @Test
     fun testFindNext() {
         assertAll(
-            { assertEquals(EAST /*to 'J'*/, field.findNextDirection(animalCoordinate)) },
-            { assertEquals(NORTH /*to '|'*/, field.findNextDirection(Coordinate(3, 2))) },
-            { assertEquals(EAST /*to '7'*/, field.findNextDirection(Coordinate(3, 2), exclude = NORTH)) },
-            { assertEquals(SOUTH /*to '|'*/, field.findNextDirection(Coordinate(3, 0), exclude = WEST)) },
+            { assertEquals(EAST /*to 'J'*/, field.findNextDirection(animalCoordinates)) },
+            { assertEquals(NORTH /*to '|'*/, field.findNextDirection(Point(3, 2))) },
+            { assertEquals(EAST /*to '7'*/, field.findNextDirection(Point(3, 2), exclude = NORTH)) },
+            { assertEquals(SOUTH /*to '|'*/, field.findNextDirection(Point(3, 0), exclude = WEST)) },
         )
     }
 }
