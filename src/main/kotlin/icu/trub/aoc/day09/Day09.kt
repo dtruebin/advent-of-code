@@ -8,12 +8,11 @@ class Day09(inputFileName: String) : AbstractDay(inputFileName) {
         .map { it.split(" ").map { s -> s.toInt() } }
         .toList()
 
-    override fun solvePartOne(): Int = histories.sumOf { it.extrapolate() }
-
-    override fun solvePartTwo(): Int = histories.sumOf { it.extrapolate(forward = false) }
+    override fun solvePartOne() = histories.sumOf { it.extrapolate() }
+    override fun solvePartTwo() = histories.sumOf { it.extrapolate(forward = false) }
 }
 
-internal fun List<Int>.extrapolate(forward: Boolean = true): Int {
+internal fun List<Int>.extrapolate(forward: Boolean = true): Long {
     if (this.all { it == 0 }) return 0
     val extrapolation = zipWithNext { a, b -> b - a }.extrapolate(forward)
     return when {

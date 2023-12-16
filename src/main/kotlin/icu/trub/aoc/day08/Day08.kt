@@ -6,16 +6,13 @@ import icu.trub.aoc.AocUtil
 class Day08(inputFileName: String) : AbstractDay(inputFileName) {
     private val input = AocUtil.readTxtResource(inputFileName).toList()
 
-    override fun solvePartOne(): Int = with(input) {
+    override fun solvePartOne() = with(input) {
         Network.parse(drop(2))
             .navigate("AAA", "ZZZ", first())
-            .toInt()
     }
 
-    override fun solvePartTwo(): Int = with(input) {
+    override fun solvePartTwo() = with(input) {
         Network.parse(drop(2))
             .navigate("A", "Z", first())
-            .also { if (it > Int.MAX_VALUE) println("Day 8, Part Two - actual solution (before conversion to Int): $it") }
-            .toInt()
     }
 }

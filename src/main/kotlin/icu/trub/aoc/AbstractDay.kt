@@ -4,7 +4,7 @@ abstract class AbstractDay(val inputFileName: String) {
     /**
      * @return list of solutions, one per day part.
      */
-    fun solve(): List<Int?> = listOf(
+    fun solve(): List<Long?> = listOf(
         solvePartOne(),
         solvePartTwo()
     )
@@ -12,10 +12,10 @@ abstract class AbstractDay(val inputFileName: String) {
     /**
      * @return the solution for Part One of this day, if available, and `null` otherwise
      */
-    protected abstract fun solvePartOne(): Int?
+    protected abstract fun solvePartOne(): Long?
 
     /**
      * @return the solution for Part Two of this day, if available, and `null` otherwise
      */
-    protected abstract fun solvePartTwo(): Int?
+    protected abstract fun solvePartTwo(): Long?
 }

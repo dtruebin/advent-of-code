@@ -9,12 +9,10 @@ class Day11(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solvePartOne() = universe.expand()
         .findShortestDistancesBetweenGalaxies()
         .values
-        .sum()
+        .sumOf { it.toLong() }
 
     override fun solvePartTwo() = universe.expand(partTwoExpansionFactor)
         .findShortestDistancesBetweenGalaxies()
         .values
         .sumOf { it.toLong() }
-        .also { if (it > Int.MAX_VALUE) println("Day 10, Part Two - actual solution (before conversion to Int): $it") }
-        .toInt()
 }

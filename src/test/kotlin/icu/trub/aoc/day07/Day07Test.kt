@@ -9,6 +9,6 @@ class Day07Test : AbstractDayTest<Day07>(Day07::class.java) {
 
     @Test
     fun testSolveReddit() {
-        assertEquals(listOf(6592, 6839), Day07("day07-reddit-test.txt").solve())
+        assertEquals(listOf<Long>(6592, 6839), Day07("day07-reddit-test.txt").solve())
     }
 }

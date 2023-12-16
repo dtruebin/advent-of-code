@@ -13,7 +13,7 @@ class Day10Test : AbstractDayTest<Day10>(Day10::class.java) {
 
     @ParameterizedTest
     @MethodSource
-    fun testSolvePartTwo(inputFileName: String, expectedOutput: Int) {
+    fun testSolvePartTwo(inputFileName: String, expectedOutput: Long) {
         assertEquals(expectedOutput, Day10(inputFileName).solve()[1])
     }
 

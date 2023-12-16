@@ -59,7 +59,7 @@ object AocUtil {
         }
     }
 
-    fun AbstractDay.trySolve(): List<Int?>? = try {
+    fun AbstractDay.trySolve() = try {
         solve()
     } catch (e: Throwable) {
         null

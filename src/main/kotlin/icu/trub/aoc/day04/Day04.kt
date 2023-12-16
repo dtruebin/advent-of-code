@@ -8,9 +8,9 @@ class Day04(inputFileName: String) : AbstractDay(inputFileName) {
     private val input
         get() = AocUtil.readTxtResource(inputFileName).map { Scratchcard.parse(it) }
 
-    override fun solvePartOne() = input.sumOf { it.points }
+    override fun solvePartOne() = input.sumOf { it.points }.toLong()
 
-    override fun solvePartTwo(): Int {
+    override fun solvePartTwo(): Long {
         val originalCards = input.associateBy { it.id }
 
         val cardQueue = PriorityQueue(Comparator.comparingInt(Scratchcard::id))
@@ -25,6 +25,6 @@ class Day04(inputFileName: String) : AbstractDay(inputFileName) {
                 }
             }
         }
-        return resultingCards.size
+        return resultingCards.size.toLong()
     }
 }

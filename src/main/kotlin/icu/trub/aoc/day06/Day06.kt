@@ -10,7 +10,7 @@ class Day06(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solvePartTwo() = parseInput(fixBadKerning = true)
         .extractSolution()
 
-    private fun List<Race>.extractSolution(): Int = map { it.getCountOfPossibleWins() }.fold(1) { a, b -> a * b }
+    private fun List<Race>.extractSolution() = map { it.getCountOfPossibleWins() }.fold(1L) { a, b -> a * b }
 
     internal fun parseInput(fixBadKerning: Boolean = false): List<Race> {
         val (times, distances) = AocUtil.readTxtResource(inputFileName).toList().map {

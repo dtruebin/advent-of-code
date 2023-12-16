@@ -8,8 +8,8 @@ class Day02(inputFileName: String) : AbstractDay(inputFileName) {
         .map { line -> Game.parse(line) }
         .toList()
 
-    override fun solvePartOne(): Int {
-        var result = 0
+    override fun solvePartOne(): Long {
+        var result = 0L
 
         val idToCombinedOutcome = buildMap {
             games.forEach { this[it.id] = it.getCombinedOutcome() }
@@ -28,7 +28,7 @@ class Day02(inputFileName: String) : AbstractDay(inputFileName) {
         return result
     }
 
-    override fun solvePartTwo(): Int = games.sumOf(Game::getPowerOfMinimumCubeSet)
+    override fun solvePartTwo() = games.sumOf(Game::getPowerOfMinimumCubeSet).toLong()
 
     companion object {
         val bagContent = mapOf(

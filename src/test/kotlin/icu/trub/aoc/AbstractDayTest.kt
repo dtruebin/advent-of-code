@@ -13,6 +13,6 @@ abstract class AbstractDayTest<D : AbstractDay>(type: Class<D>) {
 
     @Test
     fun testSolve() {
-        assertEquals(expectedSolutions, day.solve())
+        assertEquals(expectedSolutions.map { it?.toLong() }, day.solve())
     }
 }

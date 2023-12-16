@@ -13,7 +13,7 @@ class Day09Test : AbstractDayTest<Day09>(Day09::class.java) {
 
     @ParameterizedTest
     @MethodSource
-    fun testExtrapolate(expectedResult: Int, history: List<Int>) {
+    fun testExtrapolate(expectedResult: Long, history: List<Int>) {
         assertEquals(expectedResult, history.extrapolate())
     }
 

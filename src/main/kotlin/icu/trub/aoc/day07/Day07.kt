@@ -13,6 +13,7 @@ class Day07(inputFileName: String) : AbstractDay(inputFileName) {
     private fun Map<Hand, Int>.extractSolution() = keys.sorted()
         .mapIndexed { i, hand -> i.inc() * this[hand]!! }
         .sum()
+        .toLong()
 
     private fun parseHandToBid(inputFileName: String, withJokers: Boolean = false) = buildMap {
         AocUtil.readTxtResource(inputFileName).forEach { line ->
