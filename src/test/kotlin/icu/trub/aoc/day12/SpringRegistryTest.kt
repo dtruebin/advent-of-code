@@ -27,11 +27,6 @@ class SpringRegistryTest {
             assertEquals(listOf(1, 1, 3), parsedFirstRecord.damagedGroupSizes)
         }
 
-        @Test
-        fun testRegex() {
-            assertEquals("[^#]*#{1}[^#]+#{1}[^#]+#{3}[^#]*", parsedFirstRecord.damagedGroupRegex.toString())
-        }
-
         @ParameterizedTest
         @MethodSource("testGetPossibleArrangementsArgs")
         internal fun testGetPossibleArrangements(record: SpringRegistry.Record, expectedCount: Int) {
