@@ -35,9 +35,9 @@ class SpringRegistryTest {
         @ParameterizedTest
         @MethodSource("testGetPossibleArrangementsArgs")
         internal fun testGetPossibleArrangements(record: SpringRegistry.Record, expectedCount: Int) {
-            val (arrangements, duration) = measureTimedValue { record.getPossibleArrangements() }
+            val (arrangements, duration) = measureTimedValue { record.countPossibleArrangements() }
             assertAll(
-                { assertEquals(expectedCount, arrangements.count()) },
+                { assertEquals(expectedCount, arrangements) },
                 { assertTrue(duration.inWholeSeconds < 1, "ran too long") },
             )
         }
@@ -60,7 +60,7 @@ class SpringRegistryTest {
         @Test
         fun testCountPossibleArrangements_sameRecords_noConflation() {
             val record = parsedFirstRecord
-            val recordArrangementsCount = record.getPossibleArrangements().size
+            val recordArrangementsCount = record.countPossibleArrangements()
             val registry = SpringRegistry(listOf(record, record))
             assertEquals(recordArrangementsCount * 2L, registry.countPossibleArrangements())
         }

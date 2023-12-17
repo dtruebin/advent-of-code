@@ -6,10 +6,10 @@ import kotlin.time.measureTimedValue
 
 internal class SpringRegistry(val records: List<Record>) {
     fun countPossibleArrangements(debug: Boolean = false) = records.map {
-        val (arrangements, duration) = measureTimedValue { it.getPossibleArrangements() }
+        val (arrangements, duration) = measureTimedValue { it.countPossibleArrangements() }
         if (debug && duration.inWholeMilliseconds > 500) println("$duration to process $it")
         arrangements
-    }.sumOf { it.size }.toLong()
+    }.sumOf { it }.toLong()
 
     companion object {
         fun parse(input: Sequence<String>): SpringRegistry = input
@@ -29,15 +29,14 @@ internal class SpringRegistry(val records: List<Record>) {
             append(nonDamagedZeroOrMore)
         })
 
-        fun getPossibleArrangements(): List<String> {
+        fun countPossibleArrangements(): Int {
             if (conditions.length == damagedGroupSizes.sum() + damagedGroupSizes.size - 1) {
-                return listOf(damagedGroupSizes.joinToString(".") { DAMAGED_SPRING.toString().repeat(it) })
+                return 1
             }
 
             val (optimizedGroups, optimizedConditions) = simplifyRecordData(damagedGroupSizes, conditions)
             if (optimizedGroups != this.damagedGroupSizes) {
-                // TODO not cool to return arrangements for technically some other record. Switch to returning count?
-                return Record(optimizedConditions, optimizedGroups).getPossibleArrangements()
+                return Record(optimizedConditions, optimizedGroups).countPossibleArrangements()
             }
 
             return this.conditions.withIndex()
@@ -47,7 +46,7 @@ internal class SpringRegistry(val records: List<Record>) {
                 .subsets()
                 .map { this.conditions.replaceCharAtIndices(it, DAMAGED_SPRING) }
                 .filter { damagedGroupRegex.matches(it) }
-                .toList()
+                .count()
         }
 
         /**
