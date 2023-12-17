@@ -19,4 +19,20 @@ class MathFunctionsKtTest {
             getPolygonArea(listOf(Point(2, 2), Point(4, 10), Point(9, 7), Point(11, 2)))
         )
     }
+
+    @Test
+    fun testSubsets() {
+        assertEquals(
+            setOf(
+                setOf(),
+                setOf(1),
+                setOf(2),
+                setOf(3),
+                setOf(1, 2),
+                setOf(1, 3),
+                setOf(2, 3),
+                setOf(1, 2, 3)
+            ), setOf(1, 2, 3).subsets().toSet()
+        )
+    }
 }
