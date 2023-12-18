@@ -29,7 +29,7 @@ class SpringRegistryTest {
 
         @ParameterizedTest
         @MethodSource("testGetPossibleArrangementsArgs")
-        internal fun testGetPossibleArrangements(record: SpringRegistry.Record, expectedCount: Int) {
+        internal fun testGetPossibleArrangements(record: SpringRegistry.Record, expectedCount: Long) {
             val (arrangements, duration) = measureTimedValue { record.countPossibleArrangements() }
             assertAll(
                 { assertEquals(expectedCount, arrangements) },

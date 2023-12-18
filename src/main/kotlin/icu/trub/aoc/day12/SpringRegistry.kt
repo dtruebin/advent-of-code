@@ -7,7 +7,7 @@ internal class SpringRegistry(val records: List<Record>) {
         val (arrangements, duration) = measureTimedValue { it.countPossibleArrangements() }
         if (debug && duration.inWholeMilliseconds > 500) println("$duration to process $it")
         arrangements
-    }.sumOf { it }.toLong()
+    }.sumOf { it }
 
     companion object {
         fun parse(input: Sequence<String>): SpringRegistry = input
@@ -17,9 +17,9 @@ internal class SpringRegistry(val records: List<Record>) {
     }
 
     internal data class Record(val conditions: String, val damagedGroupSizes: List<Int>) {
-        fun countPossibleArrangements(): Int = countPossibleArrangements(conditions, damagedGroupSizes)
+        fun countPossibleArrangements(): Long = countPossibleArrangements(conditions, damagedGroupSizes)
 
-        private fun countPossibleArrangements(conditions: String, groups: List<Int>): Int {
+        private fun countPossibleArrangements(conditions: String, groups: List<Int>): Long {
             if (conditions.isEmpty()) {
                 return if (groups.isEmpty()) 1 else 0
             }
