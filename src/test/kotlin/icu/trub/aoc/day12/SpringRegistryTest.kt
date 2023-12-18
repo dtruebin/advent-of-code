@@ -42,6 +42,20 @@ class SpringRegistryTest {
             .map { arguments(it.first, it.second) }
             .plus(arguments(SpringRegistry.Record.parse("??????.????#???#???# 4,2,1,1,3,1"), 6))
             .plus(arguments(SpringRegistry.Record.parse("??????#????????##??? 1,1,1,1,1,9"), 3))
+
+        @ParameterizedTest
+        @MethodSource("testGetPossibleArrangementsUnfoldedArgs")
+        internal fun testGetPossibleArrangementsUnfolded(record: SpringRegistry.Record, expectedCount: Long) {
+            val (arrangements, duration) = measureTimedValue { record.countPossibleArrangements() }
+            assertAll(
+                { assertEquals(expectedCount, arrangements) },
+                { assertTrue(duration.inWholeSeconds < 1, "ran too long") },
+            )
+        }
+
+        private fun testGetPossibleArrangementsUnfoldedArgs() = parsedRegistry.unfold().records
+            .zip(listOf(1, 16384, 1, 16, 2500, 506250))
+            .map { arguments(it.first, it.second) }
     }
 
     @Nested
@@ -58,6 +72,14 @@ class SpringRegistryTest {
             val recordArrangementsCount = record.countPossibleArrangements()
             val registry = SpringRegistry(listOf(record, record))
             assertEquals(recordArrangementsCount * 2L, registry.countPossibleArrangements())
+        }
+
+        @Test
+        fun testUnfold() {
+            assertEquals(
+                SpringRegistry.Record.parse("???.###????.###????.###????.###????.### 1,1,3,1,1,3,1,1,3,1,1,3,1,1,3"),
+                parsedRegistry.unfold().records.first()
+            )
         }
     }
 }
