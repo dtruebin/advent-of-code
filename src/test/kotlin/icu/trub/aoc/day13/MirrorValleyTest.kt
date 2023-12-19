@@ -67,10 +67,10 @@ class MirrorValleyTest {
         }
 
         private fun reflectionArgs(): Stream<Arguments> = Stream.of(
-            arguments(parsed.patterns[0], Pattern.MirrorReflection(vertical = true, 5)),
-            arguments(parsed.patterns[1], Pattern.MirrorReflection(vertical = false, 4)),
-            arguments(patternWithSubSymmetry, Pattern.MirrorReflection(vertical = true, 8)),
-            arguments(patternWithTwoSymLines, Pattern.MirrorReflection(vertical = true, 3)),
+            arguments(parsed.patterns[0], Pattern.LeftRightReflection(5)),
+            arguments(parsed.patterns[1], Pattern.UpDownReflection(4)),
+            arguments(patternWithSubSymmetry, Pattern.LeftRightReflection(8)),
+            arguments(patternWithTwoSymLines, Pattern.LeftRightReflection(3)),
         )
 
         @ParameterizedTest

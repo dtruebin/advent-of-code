@@ -55,7 +55,7 @@ class Pattern(val matrix: Map<Point, Char>) {
             .map { it.first }
 
         val winningIndex = with(symmetryIndices) { if (isNotEmpty()) last() else return null }
-        return MirrorReflection(vertical = true, winningIndex + 1)
+        return LeftRightReflection(winningIndex + 1)
     }
 
     private fun lookForHorizontalReflection(): MirrorReflection? {
@@ -80,13 +80,14 @@ class Pattern(val matrix: Map<Point, Char>) {
             .map { it.first }
 
         val winningIndex = with(symmetryIndices) { if (isNotEmpty()) last() else return null }
-        return MirrorReflection(vertical = false, winningIndex + 1)
+        return UpDownReflection(winningIndex + 1)
     }
 
     fun getSummary(): Int {
-        return when (reflection.vertical) {
-            true -> reflection.coordinate
-            else -> reflection.coordinate * 100
+        return when (reflection) {
+            is LeftRightReflection -> reflection.coordinate
+            is UpDownReflection -> reflection.coordinate * 100
+            else -> throw IllegalArgumentException()
         }
     }
 
@@ -102,8 +103,11 @@ class Pattern(val matrix: Map<Point, Char>) {
         })
     }
 
-    /**
-     * @param coordinate row or column number (index+1) after which reflection starts
-     */
-    data class MirrorReflection(val vertical: Boolean, val coordinate: Int)
+    interface MirrorReflection {
+        /** Row or column number (index+1) after which reflection starts. */
+        val coordinate: Int
+    }
+
+    data class LeftRightReflection(override val coordinate: Int) : MirrorReflection
+    data class UpDownReflection(override val coordinate: Int) : MirrorReflection
 }
