@@ -90,4 +90,8 @@ object AocUtil {
         }
         return maxLcm
     }
+
+    fun IntProgression.zipWithReversed(): List<Pair<Int, Int>> {
+        return this.let { it to it.reversed() }.let { it.first.zip(it.second) }
+    }
 }

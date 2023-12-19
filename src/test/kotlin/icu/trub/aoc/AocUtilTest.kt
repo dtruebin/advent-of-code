@@ -3,6 +3,7 @@ package icu.trub.aoc
 import icu.trub.aoc.AocUtil.collectDigitsFromLine
 import icu.trub.aoc.AocUtil.createAllDays
 import icu.trub.aoc.AocUtil.getDoubleDigitFromFirstAndLast
+import icu.trub.aoc.AocUtil.zipWithReversed
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Assumptions.assumeTrue
@@ -58,5 +59,12 @@ class AocUtilTest {
         )
         assumeTrue(inputFile != null)
         assertTrue(createAllDays().count() > 0)
+    }
+
+    @Test
+    fun testRangeZipWithReversed() {
+        val zipped = (0..3).zipWithReversed()
+        val expected = listOf(0 to 3, 1 to 2, 2 to 1, 3 to 0)
+        assertEquals(expected, zipped)
     }
 }

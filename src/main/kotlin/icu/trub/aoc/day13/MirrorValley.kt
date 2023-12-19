@@ -2,6 +2,9 @@ package icu.trub.aoc.day13
 
 
 import icu.trub.aoc.util.Point
+import icu.trub.aoc.util.collections.rotate
+import icu.trub.aoc.util.columnToString
+import icu.trub.aoc.util.rowToString
 
 internal class MirrorValley(val patterns: List<Pattern>) {
     companion object {
@@ -26,41 +29,20 @@ class Pattern(val matrix: Map<Point, Char>) {
     val lastColIndex: Int = matrix.maxOf { it.key.x }
     val lastRowIndex: Int = matrix.maxOf { it.key.y }
     val reflection: MirrorReflection = sequence {
-        yield(lookForHorizontalReflection())
-        yield(lookForVerticalReflection())
+        yield(matrix.lookForHorizontalReflection())
+        yield(matrix.lookForVerticalReflection())
     }.firstNotNullOf { it }
 
-    fun getHorizontalLine(y: Int): String = matrix.filter { it.key.y == y }.values.joinToString(separator = "")
-    fun getVerticalLine(x: Int): String = matrix.filter { it.key.x == x }.values.joinToString(separator = "")
+    fun getHorizontalLine(y: Int): String = matrix.rowToString(y)
+    fun getVerticalLine(x: Int): String = matrix.columnToString(x)
 
-    private fun lookForVerticalReflection(): MirrorReflection? {
-        val pairStartingColumnIndices = (0..lastColIndex).asSequence()
-            .map { getVerticalLine(it) }
-            .zipWithNext()
-            .withIndex()
-            .filter { it.value.first == it.value.second }
-            .map { it.index }
-            .toList()
-            .also { if (it.isEmpty()) return null }
+    private fun Map<Point, Char>.lookForVerticalReflection(): MirrorReflection? =
+        rotate().lookForHorizontalReflection()?.let { LeftRightReflection(it.coordinate) }
 
-        val symmetryIndices = pairStartingColumnIndices.map {
-            var left = it
-            var right = it + 1
-            while (getVerticalLine(left) == getVerticalLine(right)) {
-                left--
-                right++
-            }
-            it to (left to right)
-        }.filter { it.second.first < 0 || it.second.second > lastColIndex }
-            .map { it.first }
-
-        val winningIndex = with(symmetryIndices) { if (isNotEmpty()) last() else return null }
-        return LeftRightReflection(winningIndex + 1)
-    }
-
-    private fun lookForHorizontalReflection(): MirrorReflection? {
+    private fun Map<Point, Char>.lookForHorizontalReflection(): MirrorReflection? {
+        val lastRowIndex: Int = maxOf { it.key.y }
         val pairStartingRowIndices = (0..lastRowIndex).asSequence()
-            .map { getHorizontalLine(it) }
+            .map { rowToString(it) }
             .zipWithNext()
             .withIndex()
             .filter { it.value.first == it.value.second }
@@ -71,7 +53,7 @@ class Pattern(val matrix: Map<Point, Char>) {
         val symmetryIndices = pairStartingRowIndices.map {
             var up = it
             var down = it + 1
-            while (getHorizontalLine(up) == getHorizontalLine(down)) {
+            while (rowToString(up) == rowToString(down)) {
                 up--
                 down++
             }
