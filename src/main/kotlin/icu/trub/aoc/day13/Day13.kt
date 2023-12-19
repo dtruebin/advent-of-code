@@ -10,5 +10,7 @@ class Day13(inputFileName: String) : AbstractDay(inputFileName) {
         .sumOf { it.getSummary() }
         .toLong()
 
-    override fun solvePartTwo() = null
+    override fun solvePartTwo() = mirrorValley.patterns
+        .sumOf { it.getSummary(isClean = true) }
+        .toLong()
 }

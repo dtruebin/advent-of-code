@@ -62,6 +62,7 @@ object AocUtil {
     fun AbstractDay.trySolve() = try {
         solve()
     } catch (e: Throwable) {
+        e.printStackTrace()
         e.message
     }
 

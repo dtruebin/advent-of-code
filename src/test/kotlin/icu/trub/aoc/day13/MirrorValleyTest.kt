@@ -74,14 +74,28 @@ class MirrorValleyTest {
         )
 
         @ParameterizedTest
+        @MethodSource("cleanReflectionArgs")
+        internal fun testCleanReflection(pattern: Pattern, expectedReflection: Pattern.MirrorReflection) {
+            assertEquals(expectedReflection, pattern.altReflection)
+        }
+
+        private fun cleanReflectionArgs(): Stream<Arguments> = Stream.of(
+            arguments(parsed.patterns[0], Pattern.UpDownReflection(3)),
+            arguments(parsed.patterns[1], Pattern.UpDownReflection(1)),
+        )
+
+        @ParameterizedTest
         @MethodSource("summaryArgs")
-        internal fun testSummary(pattern: Pattern, expectedSummary: Int) {
-            assertEquals(expectedSummary, pattern.getSummary())
+        internal fun testSummary(pattern: Pattern, expectedSummary: Int, expectedSummaryClean: Int) {
+            assertAll(
+                { assertEquals(expectedSummary, pattern.getSummary()) },
+                { assertEquals(expectedSummaryClean, pattern.getSummary(isClean = true)) },
+            )
         }
 
         private fun summaryArgs(): Stream<Arguments> = Stream.of(
-            arguments(parsed.patterns[0], 5),
-            arguments(parsed.patterns[1], 400),
+            arguments(parsed.patterns[0], 5, 300),
+            arguments(parsed.patterns[1], 400, 100),
         )
     }
 

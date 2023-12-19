@@ -28,18 +28,33 @@ internal class MirrorValley(val patterns: List<Pattern>) {
 class Pattern(val matrix: Map<Point, Char>) {
     val lastColIndex: Int = matrix.maxOf { it.key.x }
     val lastRowIndex: Int = matrix.maxOf { it.key.y }
+
     val reflection: MirrorReflection = sequence {
         yield(matrix.lookForHorizontalReflection())
         yield(matrix.lookForVerticalReflection())
     }.firstNotNullOf { it }
 
+    val altReflection: MirrorReflection
+        get() = sequence {
+            (0..lastColIndex).map { x ->
+                (0..lastRowIndex).map { y ->
+                    val mm = matrix
+                        .toMutableMap()
+                        .also { it[Point(x, y)] = if (it[Point(x, y)] == '.') '#' else '.' }
+                        .toMap()
+                    yield(mm.lookForHorizontalReflection(excludeIndex = if (reflection is UpDownReflection) reflection.coordinate - 1 else null))
+                    yield(mm.lookForVerticalReflection(excludeIndex = if (reflection is LeftRightReflection) reflection.coordinate - 1 else null))
+                }
+            }
+        }.filter { it != reflection }.firstNotNullOf { it }
+
     fun getHorizontalLine(y: Int): String = matrix.rowToString(y)
     fun getVerticalLine(x: Int): String = matrix.columnToString(x)
 
-    private fun Map<Point, Char>.lookForVerticalReflection(): MirrorReflection? =
-        rotate().lookForHorizontalReflection()?.let { LeftRightReflection(it.coordinate) }
+    private fun Map<Point, Char>.lookForVerticalReflection(excludeIndex: Int? = null): MirrorReflection? =
+        rotate().lookForHorizontalReflection(excludeIndex)?.let { LeftRightReflection(it.coordinate) }
 
-    private fun Map<Point, Char>.lookForHorizontalReflection(): MirrorReflection? {
+    private fun Map<Point, Char>.lookForHorizontalReflection(excludeIndex: Int? = null): MirrorReflection? {
         val lastRowIndex: Int = maxOf { it.key.y }
         val pairStartingRowIndices = (0..lastRowIndex).asSequence()
             .map { rowToString(it) }
@@ -61,14 +76,15 @@ class Pattern(val matrix: Map<Point, Char>) {
         }.filter { it.second.first < 0 || it.second.second > lastRowIndex }
             .map { it.first }
 
-        val winningIndex = with(symmetryIndices) { if (isNotEmpty()) last() else return null }
+        val winningIndex = symmetryIndices.ifEmpty { return null }.lastOrNull { it != excludeIndex } ?: return null
+
         return UpDownReflection(winningIndex + 1)
     }
 
-    fun getSummary(): Int {
-        return when (reflection) {
-            is LeftRightReflection -> reflection.coordinate
-            is UpDownReflection -> reflection.coordinate * 100
+    fun getSummary(isClean: Boolean = false): Int = with(if (isClean) altReflection else reflection) {
+        return when (this) {
+            is LeftRightReflection -> coordinate
+            is UpDownReflection -> coordinate * 100
             else -> throw IllegalArgumentException()
         }
     }
