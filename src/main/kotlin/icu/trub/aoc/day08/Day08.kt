@@ -1,10 +1,10 @@
 package icu.trub.aoc.day08
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day08(inputFileName: String) : AbstractDay(inputFileName) {
-    private val input = AocUtil.readTxtResource(inputFileName).toList()
+    private val input = this.readTxtResource(inputFileName).toList()
 
     override fun solvePartOne() = with(input) {
         Network.parse(drop(2))

@@ -1,6 +1,6 @@
 package icu.trub.aoc.day13
 
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Nested
@@ -100,9 +100,9 @@ class MirrorValleyTest {
     }
 
     companion object {
-        private val parsed = MirrorValley.parse(AocUtil.readTxtResource("day13-test.txt").toList())
+        private val parsed = MirrorValley.parse(this.readTxtResource("day13-test.txt").toList())
 
-        private val parsedAdditional = MirrorValley.parse(AocUtil.readTxtResource("day13-additional-test.txt").toList())
+        private val parsedAdditional = MirrorValley.parse(this.readTxtResource("day13-additional-test.txt").toList())
         private val patternWithSubSymmetry = parsedAdditional.patterns[0]
         private val patternWithTwoSymLines = parsedAdditional.patterns[1]
     }

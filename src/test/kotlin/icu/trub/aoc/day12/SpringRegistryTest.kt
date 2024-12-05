@@ -1,6 +1,6 @@
 package icu.trub.aoc.day12
 
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Nested
@@ -14,7 +14,7 @@ import kotlin.time.measureTimedValue
 
 class SpringRegistryTest {
     companion object {
-        private val parsedRegistry = SpringRegistry.parse(AocUtil.readTxtResource("day12-test.txt"))
+        private val parsedRegistry = SpringRegistry.parse(this.readTxtResource("day12-test.txt"))
         private val parsedFirstRecord = SpringRegistry.Record.parse("???.### 1,1,3")
     }
 

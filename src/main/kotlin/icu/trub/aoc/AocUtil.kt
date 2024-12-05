@@ -36,8 +36,9 @@ object AocUtil {
     /**
      * @return stream of lines in the file
      */
-    fun readTxtResource(inputFileName: String) =
-        object {}.javaClass.getResourceAsStream(inputFileName)!!.bufferedReader().lineSequence()
+    fun Any.readTxtResource(name: String) =
+        this.javaClass.getResourceAsStream(name)?.bufferedReader()?.lineSequence()
+            ?: throw IllegalArgumentException("Resource $name not found for class ${this.javaClass.name}")
 
     private val daysInDecember = YearMonth.of(2023, Month.DECEMBER).lengthOfMonth()
 
@@ -54,9 +55,17 @@ object AocUtil {
         } catch (_: ClassNotFoundException) {
             null
         } catch (t: Throwable) {
-            System.err.println(t)
+            System.err.println("Day$n: ${t.getRootCause()}")
             null
         }
+    }
+
+    private fun Throwable.getRootCause(): Throwable {
+        var cause: Throwable? = this
+        while (cause?.cause != null) {
+            cause = cause.cause
+        }
+        return cause ?: this
     }
 
     fun AbstractDay.trySolve() = try {

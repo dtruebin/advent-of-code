@@ -1,10 +1,10 @@
 package icu.trub.aoc.day11
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day11(inputFileName: String) : AbstractDay(inputFileName) {
-    private val universe = Universe.parse(AocUtil.readTxtResource(inputFileName))
+    private val universe = Universe.parse(this.readTxtResource(inputFileName))
     internal var partTwoExpansionFactor = 1000000
     override fun solvePartOne() = universe.expand()
         .findShortestDistancesBetweenGalaxies()

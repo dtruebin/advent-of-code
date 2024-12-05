@@ -1,7 +1,7 @@
 package icu.trub.aoc.day06
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day06(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solvePartOne() = parseInput()
@@ -13,7 +13,7 @@ class Day06(inputFileName: String) : AbstractDay(inputFileName) {
     private fun List<Race>.extractSolution() = map { it.getCountOfPossibleWins() }.fold(1L) { a, b -> a * b }
 
     internal fun parseInput(fixBadKerning: Boolean = false): List<Race> {
-        val (times, distances) = AocUtil.readTxtResource(inputFileName).toList().map {
+        val (times, distances) = this.readTxtResource(inputFileName).toList().map {
             when (fixBadKerning) {
                 true -> listOf(splitSingle(it))
                 false -> split(it)

@@ -1,6 +1,6 @@
 package icu.trub.aoc.day03
 
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 import icu.trub.aoc.util.Point
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 class SchematicTest {
-    private val input: List<String> = AocUtil.readTxtResource("day03-test.txt").toList()
+    private val input: List<String> = this.readTxtResource("day03-test.txt").toList()
     private val schematic = Schematic.parse(input)
 
     @Test

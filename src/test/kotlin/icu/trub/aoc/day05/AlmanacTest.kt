@@ -1,6 +1,6 @@
 package icu.trub.aoc.day05
 
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -12,7 +12,7 @@ class AlmanacTest {
 
     @Test
     fun testParse() {
-        val parsed = Almanac.parse(AocUtil.readTxtResource("day05-test.txt").toList())
+        val parsed = Almanac.parse(this.readTxtResource("day05-test.txt").toList())
         assertEquals(4, parsed.seeds.size)
         assertEquals(7, parsed.maps.size)
     }

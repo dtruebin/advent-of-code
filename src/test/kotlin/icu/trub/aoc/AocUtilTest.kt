@@ -54,10 +54,9 @@ class AocUtilTest {
 
     @Test
     fun testCreateAllDays() {
-        val inputFile = this.javaClass.classLoader.getResource(
-            "${this.javaClass.packageName.replace('.', '/')}/day01.txt"
-        )
-        assumeTrue(inputFile != null)
+        val resourceName = "${this.javaClass.packageName.replace('.', '/')}/day01/day01.txt"
+        val inputFile = this.javaClass.classLoader.getResource(resourceName)
+        assumeTrue(inputFile != null, "Assumed resource $resourceName to be present, but it is missing.")
         assertTrue(createAllDays().count() > 0)
     }
 

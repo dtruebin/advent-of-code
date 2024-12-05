@@ -1,10 +1,10 @@
 package icu.trub.aoc.day09
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day09(inputFileName: String) : AbstractDay(inputFileName) {
-    private val histories = AocUtil.readTxtResource(inputFileName)
+    private val histories = this.readTxtResource(inputFileName)
         .map { it.split(" ").map { s -> s.toInt() } }
         .toList()
 

@@ -1,10 +1,10 @@
 package icu.trub.aoc.day02
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day02(inputFileName: String) : AbstractDay(inputFileName) {
-    private val games: List<Game> = AocUtil.readTxtResource(inputFileName)
+    private val games: List<Game> = this.readTxtResource(inputFileName)
         .map { line -> Game.parse(line) }
         .toList()
 

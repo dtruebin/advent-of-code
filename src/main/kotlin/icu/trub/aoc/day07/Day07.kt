@@ -1,7 +1,7 @@
 package icu.trub.aoc.day07
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 
 class Day07(inputFileName: String) : AbstractDay(inputFileName) {
     override fun solvePartOne() = parseHandToBid(inputFileName)
@@ -16,7 +16,7 @@ class Day07(inputFileName: String) : AbstractDay(inputFileName) {
         .toLong()
 
     private fun parseHandToBid(inputFileName: String, withJokers: Boolean = false) = buildMap {
-        AocUtil.readTxtResource(inputFileName).forEach { line ->
+        this@Day07.readTxtResource(inputFileName).forEach { line ->
             line.split(" ").also {
                 put(Hand.parse(it[0], withJokers), it[1].toInt())
             }

@@ -1,12 +1,12 @@
 package icu.trub.aoc.day04
 
 import icu.trub.aoc.AbstractDay
-import icu.trub.aoc.AocUtil
+import icu.trub.aoc.AocUtil.readTxtResource
 import java.util.*
 
 class Day04(inputFileName: String) : AbstractDay(inputFileName) {
     private val input
-        get() = AocUtil.readTxtResource(inputFileName).map { Scratchcard.parse(it) }
+        get() = this.readTxtResource(inputFileName).map { Scratchcard.parse(it) }
 
     override fun solvePartOne() = input.sumOf { it.points }.toLong()
 
