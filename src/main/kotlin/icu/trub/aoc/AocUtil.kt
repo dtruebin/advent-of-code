@@ -51,7 +51,9 @@ object AocUtil {
         val s = n.toString().padStart(2, '0')
         return try {
             val clazz = Class.forName("${this::class.java.packageName}.day$s.Day$s")
-            clazz.declaredConstructors[0].newInstance("${clazz.simpleName.lowercase()}.txt") as AbstractDay
+            val inputFileName = "${clazz.simpleName.lowercase()}.txt"
+            val resourceExists = clazz.getResource(inputFileName)?.path != null
+            if (resourceExists) clazz.declaredConstructors[0].newInstance(inputFileName) as AbstractDay else null
         } catch (_: ClassNotFoundException) {
             null
         } catch (t: Throwable) {
